@@ -11,7 +11,7 @@ const InternshipList = ({ refresh }) => {
   useEffect(() => {
     const fetchInternships = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/internships');
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/internships`);
         if (!response.ok) throw new Error('Failed to fetch internships');
         const data = await response.json();
         setInternships(data);

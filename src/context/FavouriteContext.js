@@ -9,7 +9,7 @@ export const FavouriteProvider = ({ children }) => {
   useEffect(() => {
     const fetchFavourites = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/internships/favourites');
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/internships/favourites`);
         const data = await response.json();
         setFavourites(data);
       } catch (error) {
@@ -21,9 +21,8 @@ export const FavouriteProvider = ({ children }) => {
   }, []);
 
   const addToFavourites = async (internship) => {
-    console.log('Adding to favourites:', internship); // Debugging
     try {
-      const response = await fetch(`http://localhost:4000/api/internships/${internship._id}/favourite`, {
+      const response = await fetch(`https://exambackend-b2zu.onrender.com/api/internships/${internship._id}/favourite`, {
         method: 'PUT',
       });
       const updatedInternship = await response.json();
